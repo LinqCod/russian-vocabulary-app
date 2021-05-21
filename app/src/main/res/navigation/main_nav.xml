@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/wordsPageFragment">
+
+    <fragment
+        android:id="@+id/wordsPageFragment"
+        android:name="com.linqcod.russianvocabulary.fragments.WordsPageFragment"
+        android:label="Words"
+        tools:layout="@layout/fragment_words_page" >
+        <action
+            android:id="@+id/action_wordsPageFragment_to_addWordFragment"
+            app:destination="@id/addWordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWordFragment"
+        android:name="com.linqcod.russianvocabulary.fragments.AddWordFragment"
+        android:label="New word"
+        tools:layout="@layout/fragment_add_word" >
+        <action
+            android:id="@+id/action_addWordFragment_to_wordsPageFragment"
+            app:destination="@id/wordsPageFragment" />
+    </fragment>
+</navigation>
