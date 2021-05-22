@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/rand_words"
+        android:title="Random words (10)"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/last_words"
+        android:title="Last words (10)"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/all_words"
+        android:title="All words"
+        app:showAsAction="never"/>
+</menu>
