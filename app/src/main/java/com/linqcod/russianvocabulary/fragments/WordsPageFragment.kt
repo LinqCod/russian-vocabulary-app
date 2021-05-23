@@ -32,16 +32,7 @@ class WordsPageFragment : Fragment() {
 
         mWordViewModel = ViewModelProvider(this).get(WordViewModel::class.java)
         mWordViewModel.allWords.observe(viewLifecycleOwner, {
-                words ->
-            run {
-                adapter.setData(words)
-            }
-        })
-        mWordViewModel.randWords.observe(viewLifecycleOwner, {
-                words ->adapter.setData(words)
-        })
-        mWordViewModel.lastWords.observe(viewLifecycleOwner, {
-                words ->adapter.setData(words)
+                words -> adapter.setData(words)
         })
 
         view.addWordBtn.setOnClickListener {
@@ -65,10 +56,20 @@ class WordsPageFragment : Fragment() {
 
         when (item.itemId) {
             R.id.rand_words -> {
-                adapter.setData(mWordViewModel.randWords.value ?: emptyList())
+                Thread {
+                    val data = mWordViewModel.get10RandWords()
+                    activity?.runOnUiThread {
+                        adapter.setData(data)
+                    }
+                }.start()
             }
             R.id.last_words -> {
-                adapter.setData(mWordViewModel.lastWords.value ?: emptyList())
+                Thread {
+                    val data = mWordViewModel.get10LastWords()
+                    activity?.runOnUiThread {
+                        adapter.setData(data)
+                    }
+                }.start()
             }
             R.id.all_words -> {
                 adapter.setData(mWordViewModel.allWords.value ?: emptyList())

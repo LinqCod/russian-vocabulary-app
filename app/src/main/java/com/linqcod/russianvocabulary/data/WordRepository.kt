@@ -5,11 +5,16 @@ import androidx.lifecycle.LiveData
 class WordRepository(private val wordDao: WordDao) {
 
     val allWords = wordDao.getAllWords()
-    val randWords = wordDao.get10RandomWords()
-    val lastWords = wordDao.get10LastWords()
 
     suspend fun addWord(word: Word) {
         wordDao.addWord(word)
     }
 
+    fun get10RandWords(): List<Word> {
+        return wordDao.get10RandomWords()
+    }
+
+    fun get10LastWords(): List<Word> {
+        return wordDao.get10LastWords()
+    }
 }

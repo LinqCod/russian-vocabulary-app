@@ -11,21 +11,25 @@ import kotlinx.coroutines.launch
 class WordViewModel(application: Application): AndroidViewModel(application) {
 
     val allWords: LiveData<List<Word>>
-    val randWords: LiveData<List<Word>>
-    val lastWords: LiveData<List<Word>>
     private val repository: WordRepository
 
     init {
         val wordDao = WordDatabase.getDatabase(application).wordDao()
         repository = WordRepository(wordDao)
         allWords = repository.allWords
-        randWords = repository.randWords
-        lastWords = repository.lastWords
     }
 
     fun addWord(word: Word) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addWord(word)
         }
+    }
+
+    fun get10RandWords(): List<Word> {
+        return repository.get10RandWords()
+    }
+
+    fun get10LastWords(): List<Word> {
+        return repository.get10LastWords()
     }
 }

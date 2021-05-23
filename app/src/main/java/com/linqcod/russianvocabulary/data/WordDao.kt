@@ -13,12 +13,12 @@ interface WordDao {
     suspend fun addWord(word: Word)
 
     @Query("SELECT * FROM words_table ORDER BY RANDOM() LIMIT 10")
-    fun get10RandomWords(): LiveData<List<Word>>
+    fun get10RandomWords(): List<Word>
 
-    @Query("SELECT * FROM words_table ORDER BY id ASC LIMIT 10")
-    fun get10LastWords(): LiveData<List<Word>>
+    @Query("SELECT * FROM words_table ORDER BY id DESC LIMIT 10")
+    fun get10LastWords(): List<Word>
 
-    @Query("SELECT * FROM words_table ORDER BY id ASC")
+    @Query("SELECT * FROM words_table ORDER BY id DESC")
     fun getAllWords(): LiveData<List<Word>>
 
 }
